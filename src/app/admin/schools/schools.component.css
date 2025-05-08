@@ -1,0 +1,291 @@
+/* Container Styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Add School Button */
+.button.add-tsc-button, a.mat-raised-button.add-tsc-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button.add-tsc-button:hover, a.mat-raised-button.add-tsc-button:hover {
+  background-color: #0056b3;
+}
+
+/* School Cards */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: left;
+}
+
+.card, mat-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(33.333% - 20px); /* Three cards per row */
+  transition: transform 0.3s ease;
+}
+
+.card:hover, mat-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-body h3, mat-card-content h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-text, mat-card-content p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Action Buttons */
+.card .btn, mat-card .mat-button {
+  margin: 5px 5px 0 0;
+  font-size: 14px;
+}
+
+mat-card-content .action-buttons button {
+  margin-right: 8px;
+}
+
+.tsc-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #151414;
+}
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.add-button {
+  width: 100%;
+  padding: 8px;
+  background-color: #ffd740;
+  color: black;
+}
+
+.cancel-button {
+  width: 60%;
+  padding: 8px;
+  background-color: #f44336;
+  color: white;
+}
+
+/* Button container to align buttons in a single line */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.button-container button {
+  flex: 1;
+}
+
+.mat-form-field {
+  border-radius: 4px;
+  background-color: white;
+}
+
+.mat-form-field .mat-input-element {
+  border-radius: 4px;
+}
+
+.mat-radio-button {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* Adjusting Card Width */
+.card, mat-card {
+  padding: 15px; /* Adjust card padding */
+}
+
+.card-body, mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Common Styling for Search and Add Button Row */
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Search Bar Styling */
+.search-container {
+  width: 40%; /* Adjust width as needed */
+}
+
+mat-form-field.search-bar {
+  width: 100%;
+}
+
+/* Add Button Styling */
+.add-button {
+  margin-left: auto;
+}
+
+button.mat-raised-button.add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button.add-button:hover {
+  background-color: #0056b3;
+}
+h2{
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* Responsive Styles */
+
+/* For mobile screens */
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+
+  /* School Cards */
+  .row {
+    flex-direction: column; /* Stack cards vertically */
+    gap: 10px;
+  }
+
+  .card, mat-card {
+    width: 100%; /* Cards take full width on mobile */
+    padding: 15px;
+  }
+
+  /* Search Bar */
+  .search-container {
+    width: 100%; /* Full width for search bar */
+  }
+
+  mat-form-field.search-bar {
+    width: 100%; /* Full width for input field */
+  }
+
+  /* Add School Button */
+  .search-add-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  button.mat-raised-button.add-button {
+    width: 100%; /* Full width for add button */
+    margin-top: 10px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* School Name */
+  .card-body h3, mat-card-content h3 {
+    font-size: 1.2em;
+  }
+}
+
+/* For larger tablets or small desktops (768px to 1024px) */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 15px;
+  }
+
+  .row {
+    gap: 15px;
+  }
+
+  .card, mat-card {
+    width: calc(50% - 15px); /* Two cards per row */
+    padding: 20px;
+  }
+
+  /* Search Bar */
+  .search-container {
+    width: 50%; /* Adjust search bar width */
+  }
+
+  /* Add School Button */
+  button.mat-raised-button.add-button {
+    width: auto;
+    margin-left: auto;
+  }
+
+  /* Button container for small screens */
+  .button-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+/* For medium to large desktops (1025px and above) */
+@media screen and (min-width: 1025px) {
+  .container {
+    padding: 20px;
+  }
+
+  .row {
+    gap: 20px;
+  }
+
+  .card, mat-card {
+    width: calc(33.333% - 20px); /* Three cards per row */
+    padding: 20px;
+  }
+
+  /* Search Bar */
+  .search-container {
+    width: 40%;
+  }
+
+  /* Add School Button */
+  button.mat-raised-button.add-button {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .button-container {
+    flex-direction: row;
+    gap: 30px;
+  }
+}

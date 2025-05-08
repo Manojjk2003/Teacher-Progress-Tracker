@@ -1,0 +1,18 @@
+<h2>Organizations</h2>
+
+<div class="organization-cards" *ngIf="!isLoading && organizations.length > 0">
+    <mat-card *ngFor="let org of organizations" class="organization-card" (click)="navigateToEvaluation(org)">
+      <mat-card-header>
+        <mat-card-title>{{ capitalizeFirstLetter(org.organization_name) }}</mat-card-title>
+      </mat-card-header>
+  
+      <mat-card-content>
+        <mat-card-subtitle><strong>Name:</strong>{{ org.contact_person }}</mat-card-subtitle>
+        <p><strong>Email:</strong> {{ org.email }}</p>
+        <p><strong>Phone:</strong> {{ org.ph_no }}</p>
+        <p><strong>Address:</strong> {{ org.address }}</p>
+        <!-- <p><strong>Created At:</strong> {{ org.created_at  }}</p> -->
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

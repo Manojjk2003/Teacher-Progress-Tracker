@@ -1,0 +1,93 @@
+<h3 class="form-title">{{ formTitle }}</h3>
+
+<form [formGroup]="tscForm" class="tsc-form">
+  
+  <!-- TSC Name Field -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>TSC Name</mat-label>
+    <input matInput formControlName="name" placeholder="Enter TSC name">
+    <mat-error *ngIf="tscForm.get('name')?.hasError('required') && tscForm.get('name')?.touched">
+      TSC Name is required.
+    </mat-error>
+  </mat-form-field>
+  
+
+  <!-- Email Field -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email ID</mat-label>
+    <input
+      matInput
+      formControlName="emailId"
+      placeholder="Enter email"
+      type="email"
+      required
+      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)$"
+    />
+    <mat-error *ngIf="tscForm.get('emailId')?.hasError('required') && tscForm.get('emailId')?.touched">
+      Email ID is required.
+    </mat-error>
+    <mat-error *ngIf="tscForm.get('emailId')?.hasError('pattern') && tscForm.get('emailId')?.touched">
+      Please enter a valid Gmail address.
+    </mat-error>
+  </mat-form-field>
+  
+  
+
+  <!-- Contact Number Field -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Phone Number</mat-label>
+    <span matPrefix style="margin-left: 10px;">   +91 &nbsp;</span>
+    <input matInput formControlName="phone_number" placeholder="Enter contact number" maxlength="10">
+    
+    <mat-error *ngIf="tscForm.get('phone_number')?.hasError('required') && tscForm.get('phone_number')?.touched">
+      Phone number is required.
+    </mat-error>
+    <mat-error *ngIf="tscForm.get('phone_number')?.hasError('pattern') && tscForm.get('phone_number')?.touched">
+      Phone number must be exactly 10 digits.
+    </mat-error>
+  </mat-form-field>
+  
+  
+
+  <!-- Gender Radio Group -->
+  <div class="gender-group">
+    <label class="gender-label">Gender:</label>
+    <mat-radio-group formControlName="gender" aria-label="Gender">
+      <mat-radio-button value="male">Male</mat-radio-button>
+      <mat-radio-button value="female">Female</mat-radio-button>
+      <mat-radio-button value="others">Others</mat-radio-button>
+    </mat-radio-group>
+    <mat-error *ngIf="tscForm.get('gender')?.hasError('required') && tscForm.get('gender')?.touched">
+      Gender selection is required.
+    </mat-error>
+
+  </div>
+
+  <!-- School Select Field -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>School Name</mat-label>
+    <mat-select formControlName="school_id">
+      <mat-option *ngFor="let school of schools" [value]="school.value">
+        {{ school.viewValue }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="tscForm.get('school_id')?.hasError('required') && tscForm.get('school_id')?.touched">
+      School selection is required.
+    </mat-error>
+    
+  </mat-form-field>
+
+  <!-- Button Container -->
+  <div class="button-container">
+    <!-- <button mat-raised-button color="primary" class="add-button" [disabled]="!tscForm.valid" (click)="onSubmit()">
+      ADD TSC
+    </button> -->
+    <button mat-raised-button color="warn" class="cancel-button" (click)="onCancel()">
+      Cancel
+    </button>
+    <button mat-raised-button color="primary" [disabled]="!tscForm.valid" (click)="onSubmit()" class="add-button">
+      {{ isEditMode ? 'Save' : 'Add TSC' }}
+    </button>
+    
+  </div>
+</form>

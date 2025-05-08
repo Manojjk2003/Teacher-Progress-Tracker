@@ -1,0 +1,130 @@
+<h2>TSC</h2>
+
+<div class="tsc-container">
+  <div class="search-add-container">
+    <div class="search-container">
+      <mat-form-field class="search-bar" appearance="outline">
+        <mat-label>Search TSC</mat-label>
+        <input
+        matInput
+        [(ngModel)]="searchQuery"
+        (input)="filterTscs()"
+        placeholder="Search by name, email, or contact"
+      />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" (click)="addTsc()">Add tsc</button>
+  </div>
+
+  <div class="tsc-cards-container">
+    <mat-card class="tsc-card" *ngFor="let tsc of filteredTscList">
+      <ng-container *ngIf="!tsc.isEditing; else editTscTemplate">
+        <mat-card-title>{{ capitalizeFirstLetter(tsc.tsc_name) }}</mat-card-title>
+        <mat-card-content>
+          <p><strong>Email:</strong> {{ tsc.email }}</p>
+          <br>
+          <p><strong>Contact:</strong> {{ tsc.phone_number }}</p>
+          <br>
+          <p><strong>Schools:</strong></p>
+          <ul>
+            <li *ngFor="let school of tsc.schools_handled">{{ school }}</li>
+          </ul>
+        </mat-card-content>
+      </ng-container>
+
+      <!-- Template for Editing -->
+      <ng-template #editTscTemplate>
+
+        <mat-card-title>
+          <input 
+            [(ngModel)]="tsc.tsc_name" 
+            matInput 
+            placeholder="Name"
+            name="name" 
+            #name="ngModel" 
+            required
+          />
+          <mat-error *ngIf="name?.errors?.['required'] && name?.touched">
+            Name is required.
+          </mat-error>
+        </mat-card-title>
+
+        <mat-card-content>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input 
+              [(ngModel)]="tsc.email" 
+              matInput 
+              placeholder="Email" 
+              name="email" 
+              
+              #email="ngModel" 
+              required 
+              email
+            />
+            <mat-error *ngIf="email?.errors?.['required'] && email?.touched">
+              Email is required.
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.['email'] && email?.touched">
+              Please enter a valid email address.
+            </mat-error>
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill">
+            <mat-label>Phone Number</mat-label>
+            <span matPrefix style="margin-left: 10px;">   +91 &nbsp;</span>
+            <input 
+              [(ngModel)]="tsc.phone_number" 
+              matInput 
+              placeholder="Contact" 
+              name="phone_number" 
+              #phone_number="ngModel" 
+              required 
+              minlength="10" 
+              maxlength="15"
+            />
+            <mat-error *ngIf="phone_number?.errors?.['required'] && phone_number?.touched">
+              Contact number is required.
+            </mat-error>
+            <mat-error *ngIf="phone_number?.errors?.['minlength'] && phone_number?.touched">
+              Contact number must be at least 10 digits long.
+            </mat-error>
+            <mat-error *ngIf="phone_number?.errors?.['maxlength'] && phone_number?.touched">
+              Contact number cannot be more than 15 digits.
+            </mat-error>
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill">
+            <mat-label>Schools Handled</mat-label>
+            <input 
+              [(ngModel)]="tsc.schools_handled" 
+              matInput 
+              placeholder="Schools Handled" 
+              name="schools_handled" 
+              #schools_handled="ngModel" 
+              required 
+              [value]="tsc.schools_handled.join(', ')" 
+              readonly
+            />
+            <mat-error *ngIf="schools_handled?.errors?.['required'] && schools_handled?.touched">
+              Schools Handled is required.
+            </mat-error>
+          </mat-form-field>
+          
+        </mat-card-content>
+      </ng-template>
+
+      <mat-card-actions>
+        <button mat-icon-button color="primary" *ngIf="!tsc.isEditing" (click)="editTsc(tsc)" matTooltip="Edit TSC">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-button color="warn" (click)="openDeleteConfirmationDialog(tsc.tsc_id)">
+          
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

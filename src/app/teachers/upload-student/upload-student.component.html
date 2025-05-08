@@ -1,0 +1,108 @@
+<mat-card class="project-upload-card">
+  <mat-card-title class="card-title">Student Project Upload</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <!-- General Error Message -->
+      <div *ngIf="projectForm.invalid && formSubmitted" class="error-message">
+       
+      </div>
+
+      <!-- Student Info Row -->
+      <div class="student-info-container">
+        <!-- Number of Students -->
+        <div class="info-section">
+          <label class="field-label">No. of Students</label>
+          <mat-form-field appearance="outline" class="full-width">
+            <input matInput type="number" formControlName="noOfStudents" placeholder="Enter number" min="0" 
+            max="20" (keydown)="preventNegative($event)">
+            <mat-error *ngIf="projectForm.get('noOfStudents')?.hasError('required')">
+              Number of students is required
+            </mat-error>
+            <mat-error *ngIf="projectForm.get('noOfStudents')?.hasError('min') || projectForm.get('noOfStudents')?.hasError('max')">
+              Number must be between 1 and 20
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Grade -->
+        <div class="info-section">
+          <label class="field-label">Grade</label>
+          <mat-radio-group formControlName="grade" class="radio-group">
+            <mat-radio-button *ngFor="let grade of grades" [value]="grade">
+              {{grade}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <mat-error *ngIf="projectForm.get('grade')?.touched && projectForm.get('grade')?.hasError('required')">
+            Grade is required
+          </mat-error>
+        </div>
+
+        <!-- Section -->
+        <div class="info-section">
+          <label class="field-label">Section</label>
+          <mat-radio-group formControlName="section" class="radio-group" >
+            <mat-radio-button *ngFor="let section of sections" [value]="section">
+              {{section}}
+            </mat-radio-button>
+          </mat-radio-group>
+          <mat-error *ngIf="projectForm.get('section')?.touched && projectForm.get('section')?.hasError('required')">
+            Section is required
+          </mat-error>
+        </div>
+      </div>
+
+      <!-- Project Links -->
+      <div formArrayName="projectLinks">
+        <div *ngFor="let link of projectLinks.controls; let i = index" [formGroupName]="i" class="project-link-row">
+          <label class="field-label">Project Link {{i + 1}}</label>
+          <div class="project-input-group">
+            <mat-form-field appearance="outline">
+              <input matInput formControlName="link" placeholder="Enter Scratch project URL" maxlength="50">
+              <mat-error *ngIf="link.get('link')?.hasError('required')">
+                Project link is required
+              </mat-error>
+              <mat-error *ngIf="link.get('link')?.hasError('pattern')">
+                Please enter a valid Scratch project URL (e.g., https://scratch.mit.edu/projects/12345678)
+              </mat-error>
+              <mat-error *ngIf="link.get('link')?.hasError('maxlength')">
+                URL exceeds the maximum length (50 characters)
+              </mat-error>
+            </mat-form-field>
+
+            <!-- Show "Clear" button for the first input -->
+            <button *ngIf="i === 0" type="button" mat-raised-button color="warn" (click)="clearProjectLink(i)">
+              Remove
+            </button>
+
+            <!-- Show "Remove" button for additional inputs -->
+            <button *ngIf="i > 0" type="button" mat-raised-button color="warn" (click)="removeProjectLink(i)">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Section Container -->
+      <div class="bottom-section">
+        <!-- Buttons Column -->
+        <div class="buttons-column">
+          <button type="button" mat-stroked-button (click)="addProjectLink()" class="add-project-btn">
+            Add Project
+          </button>
+          <button mat-raised-button color="primary" class="submit-btn" type="submit" [disabled]="isLoading">
+            {{isLoading ? 'Uploading...' : 'Submit'}}
+          </button>
+        </div>
+
+        <!-- Feedback -->
+        <div class="feedback-section">
+          <mat-form-field appearance="outline" class="full-width">
+            <textarea matInput formControlName="comments" rows="4" 
+                      placeholder="Enter constructive feedback, such as the student's name, activities they participated in, or projects they worked on.">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

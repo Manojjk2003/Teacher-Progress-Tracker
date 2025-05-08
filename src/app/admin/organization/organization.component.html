@@ -1,0 +1,124 @@
+<h2>Organizations</h2>
+<div class="container">
+  <!-- Search Bar Section -->
+  <div class="search-add-container">
+    <div class="search-container">
+      <mat-form-field class="search-bar" appearance="outline">
+        <mat-label>Search Organizations</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()"
+          placeholder="Search by name, email, or contact"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button class="addbutton" color="primary" (click)="addOrganization()">Add Organization</button>
+  </div>
+
+  <!-- Organization Cards -->
+  <div class="row">
+    <mat-card class="card" *ngFor="let organization of filteredOrganizationList">
+      <mat-card-content>
+        <h3>{{ capitalizeFirstLetter(organization.name) }}</h3>
+        <p><strong>Contact Person:</strong> {{  organization.contactPerson }}</p>
+        <p><strong>Email:</strong> {{ organization.email }}</p>
+        <p><strong>Phone Number:</strong> {{ organization.phNo }}</p>
+        <p><strong>Address:</strong> {{ organization.address }}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="openEditDialog(organization)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button color="warn" (click)="onDeleteOrganization(organization.id)"><mat-icon>delete</mat-icon></button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+   <!-- Edit Organization Dialog -->
+   <ng-template #editDialog let-dialogRef="matDialogRef">
+    <div class="tsc-form">
+      <h3 class="form-title">Edit organization</h3>
+      <div mat-dialog-content>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Name</mat-label>
+          <input matInput [(ngModel)]="selectedOrganization.name" #name="ngModel" required />
+          <mat-error *ngIf="name.invalid && name.touched">Name is required.</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Contact Person</mat-label>
+          <input matInput [(ngModel)]="selectedOrganization.contactPerson" #contactPerson="ngModel" required />
+          <mat-error *ngIf="contactPerson.invalid && contactPerson.touched">Contact Person is required.</mat-error>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            [(ngModel)]="selectedOrganization.email"
+            #email="ngModel"
+            required
+            email
+            pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
+          />
+          <mat-error *ngIf="email.invalid && email.touched">
+            Please enter a valid email address 
+          </mat-error>
+        </mat-form-field>
+        
+        
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Phone Number</mat-label>
+          <span matPrefix style="margin-left: 10px;">   +91 &nbsp;</span>
+          <input
+            matInput
+            [(ngModel)]="selectedOrganization.phNo"
+            name="ph_no"
+            #phNo="ngModel"
+            required
+            maxlength="10"
+            minlength="10"
+            pattern="^[0-9]{10}$"
+            type="text"
+           
+          />
+          <mat-error *ngIf="phNo?.errors?.['required']">
+            Phone number is required.
+          </mat-error>
+      
+          <mat-error *ngIf="phNo?.errors?.['minlength'] || phNo?.errors?.['maxlength']">
+            Phone number must be exactly 10 digits.
+          </mat-error>
+        </mat-form-field>
+        
+        
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Address</mat-label>
+          <textarea matInput [(ngModel)]="selectedOrganization.address" #address="ngModel" required></textarea>
+          <mat-error *ngIf="address.invalid && address.touched">Address is required.</mat-error>
+        </mat-form-field>
+        
+      </div>
+      <div class="button-container">
+        <button mat-button class="cancel-button" (click)="closeDialog()">Cancel</button>
+        <button mat-button class="add-button1" (click)="saveOrganization(dialogRef)">Save</button>      </div>
+    </div>
+  </ng-template>
+  
+
+  <!-- Delete Confirmation Dialog -->
+  <ng-template #deleteConfirmDialog let-dialogRef="dialogRef">
+    <h2 mat-dialog-title>Delete Confirmation</h2>
+    <mat-dialog-content>
+      <p>Are you sure you want to delete this Organization?</p>
+    </mat-dialog-content>
+    <div mat-dialog-actions>
+      <button mat-button (click)="cancelDelete(dialogRef)">Cancel</button>
+      <button mat-button color="warn" (click)="confirmDelete(dialogRef)">Delete</button>
+    </div>
+  </ng-template>

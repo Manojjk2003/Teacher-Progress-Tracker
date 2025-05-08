@@ -1,0 +1,252 @@
+/* Teacher Container */
+.teacher-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Top Action Row Styling */
+.action-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Common Styling for Search and Add Button Row */
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Search Bar Styling */
+.search-container {
+  width: 40%; /* Adjust width as needed */
+}
+
+mat-form-field.search-bar {
+  width: 100%;
+}
+
+/* Add Button Styling */
+.add-button1  {
+  margin-left: auto;
+}
+
+button.mat-raised-button.add-button1 {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button.add-button:hover {
+  background-color: #0056b3;
+}
+
+/* Add Teacher Button Container */
+.add-teacher-container {
+  margin-bottom: 30px; /* Added more space between the button and the cards */
+  display: flex;
+  justify-content: flex-start;
+  max-width: 450px; /* Match the form's max width */
+  width: 100%; /* Ensure responsive behavior */
+  padding: 0; 
+}
+
+/* Add Teacher Button */
+.button.add-tsc-button, a.mat-raised-button.add-tsc-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+/* Teacher Cards Layout */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Ensures space between the cards */
+  justify-content: center; /* Centers the cards horizontally */
+}
+
+/* Teacher Card */
+.teacher-card {
+  width: calc(33.333% - 20px); /* Three cards per row */
+  transition: transform 0.3s ease;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.teacher-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Action Buttons Styling */
+mat-card-actions button {
+  margin: 5px;
+  font-size: 14px;
+}
+
+.custom-dialog-container {
+  max-width: 450px; /* Match the form's max width */
+  width: 100%; /* Ensure responsive behavior */
+  padding: 0; /* Remove unnecessary padding */
+}
+
+.mat-dialog-container {
+  border-radius: 8px; /* Match your form styling */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Depth shadow for the dialog */
+  overflow: hidden; /* Prevent content overflow */
+}
+
+@media (max-width: 600px) {
+  .custom-dialog-container {
+    max-width: 90%; /* Adjust width on smaller screens */
+    margin: 0 auto; /* Center the dialog */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .teacher-card {
+    width: calc(50% - 20px); /* Two cards per row on medium screens */
+  }
+
+  .search-container {
+    width: 50%; /* Adjust search bar width on medium screens */
+  }
+}
+
+@media (max-width: 576px) {
+  .teacher-card {
+    width: 100%; /* One card per row on small screens */
+  }
+
+  .search-add-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container {
+    width: 100%; /* Full width search bar on small screens */
+  }
+
+  button.mat-raised-button.add-button1 {
+    width: 100%; /* Make the "Add Teacher" button full width */
+    padding: 12px;
+    font-size: 18px;
+  }
+
+  .row {
+    gap: 15px; /* Reduce gap between cards on small screens */
+  }
+
+  .teacher-card {
+    width: 100%; /* Full width for each card */
+    padding: 15px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .button-container button {
+    width: 100%;
+  }
+}
+
+/* Dialog Form Styles */
+.tsc-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #151414;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+mat-form-field {
+  margin-bottom: 16px;
+}
+
+/* Gender Group Styles */
+.gender-group {
+  margin-bottom: 15px;
+}
+
+.gender-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+mat-radio-button {
+  margin-right: 15px;
+}
+
+/* Button Styles */
+.add-button {
+  width: 100%;
+  padding: 8px;
+  background-color: #ffd740;
+  color: black;
+}
+
+.cancel-button {
+  width: 60%;
+  padding: 8px;
+  background-color: #f44336;
+  color: white;
+}
+
+/* Button container to align buttons in a single line */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.button-container button {
+  flex: 1;
+}
+
+h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+mat-icon {
+  color: #005cbb;
+}
+
+/* Disabled Button */
+button[disabled] {
+  background-color: grey;
+  cursor: not-allowed;
+}

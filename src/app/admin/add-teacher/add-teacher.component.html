@@ -1,0 +1,215 @@
+<h3 class="form-title">Add Teacher</h3>
+<form (ngSubmit)="onSubmit()" #teacherForm="ngForm" class="tsc-form">
+  
+  <!-- Name Field with Number Validation -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Name</mat-label>
+    <input 
+      matInput 
+      type="text" 
+      id="name" 
+      name="name" 
+      [(ngModel)]="teacher.name" 
+      required 
+      placeholder="Enter teacher name"
+      #name="ngModel"
+    />
+    <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
+      Name is required.
+    </mat-error>
+  </mat-form-field>
+  
+  
+
+  <!-- Email Field with Email Pattern Validation -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input 
+      matInput 
+      type="email" 
+      id="email" 
+      name="email" 
+      [(ngModel)]="teacher.email" 
+      required 
+      placeholder="Enter teacher email"
+      pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)$"
+      #email="ngModel"
+    />
+    <mat-error *ngIf="email.errors?.['required']">
+      Email is required.
+    </mat-error>
+  
+    <!-- Error Message for Invalid Format -->
+    <mat-error *ngIf="email.errors?.['pattern']">
+      Please enter a valid Gmail address 
+    </mat-error>
+  
+  </mat-form-field>
+  
+
+  <!-- Organization Selection -->
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Select Organization</mat-label>
+  <mat-select id="organizationSelect" [(ngModel)]="teacher.organizationId" name="organizationId"
+    (selectionChange)="onOrganizationChange()" required #organizationSelect="ngModel">
+    <mat-option value="" disabled selected>Select an organization</mat-option>
+    <mat-option *ngFor="let org of organizations" [value]="org.id">
+      {{ org.organization_name }}
+    </mat-option>
+  </mat-select>
+  <mat-error *ngIf="organizationSelect.invalid && (organizationSelect.dirty || organizationSelect.touched)">
+    Organization selection is required.
+  </mat-error>
+</mat-form-field>
+
+
+  <!-- School Selection -->
+ <!-- School Selection (Filtered by Organization) -->
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Select School</mat-label>
+  <mat-select id="schoolSelect" [(ngModel)]="teacher.schoolId" name="schoolId" required #schoolSelect="ngModel">
+    <mat-option value="" disabled>Select a school</mat-option>
+
+    <mat-option *ngFor="let school of schools" [value]="school.id">
+      {{ school.school_name || 'Unnamed School' }}
+    </mat-option>
+    
+  </mat-select>
+  <mat-error *ngIf="schoolSelect.invalid && (schoolSelect.dirty || schoolSelect.touched)">
+    School selection is required.
+  </mat-error>
+</mat-form-field>
+
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Phone Number</mat-label>
+    <span matPrefix style="margin-left: 10px;">   +91 &nbsp;</span>
+    <input 
+      matInput 
+      type="text" 
+      id="phoneNumber" 
+      name="phoneNumber" 
+      [(ngModel)]="teacher.phoneNumber" 
+      required 
+      placeholder="Enter phone number"
+      pattern="^[0-9]{10}$"
+      maxlength="10"
+      #phone="ngModel"
+    />
+    <mat-error *ngIf="phone.errors?.['required'] && (phone.dirty || phone.touched)">
+      Phone number is required.
+    </mat-error>
+    <mat-error *ngIf="phone.value && phone.value.length < 10 && (phone.dirty || phone.touched)">
+      Phone number must be exactly 10 digits.
+    </mat-error>
+  </mat-form-field>
+
+  
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Number of Students</mat-label>
+    <input 
+      matInput 
+      type="number" 
+      id="numberOfStudents" 
+      name="numberOfStudents" 
+      [(ngModel)]="teacher.numberOfStudents" 
+      required 
+      placeholder="Enter number of students" 
+      min="0" 
+      max="200"
+      (keydown)="preventNegative($event)"
+      #numberOfStudents="ngModel" 
+    />
+    <mat-error *ngIf="numberOfStudents.errors?.['required']">
+      Number of students is required.
+    </mat-error>
+    <mat-error *ngIf="numberOfStudents.value && (numberOfStudents.value < 1 || numberOfStudents.value > 200)">
+      Number of students must be between 1 and 200.
+    </mat-error>
+  </mat-form-field>
+  
+  
+
+  <!-- Classes Field -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Classes</mat-label>
+    <input 
+      matInput 
+      type="text" 
+      id="classes" 
+      name="classes" 
+      [(ngModel)]="teacher.classes" 
+      required
+      placeholder='Enter student count (e.g., 10, 9)' 
+   
+      #classes="ngModel"
+    />
+    <mat-error *ngIf="classes.errors?.['required']">
+      Classes field is required.
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Date of Birth Field -->
+ <!-- Date of Birth Field with Validation -->
+<mat-form-field appearance="outline" class="full-width">
+  <mat-label>Date of Birth</mat-label>
+  <input
+    matInput
+    type="text" 
+    id="dob"
+    name="dob"
+    placeholder="DD-MM-YYYY"
+    [(ngModel)]="teacher.dateOfBirth"
+    required
+    pattern="^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(19|20)\d{2}$"
+    #dob="ngModel"
+  />
+  <mat-error *ngIf="dob.errors?.['required']">
+    Date of Birth is required.
+  </mat-error>
+  <mat-error *ngIf="dob.errors?.['pattern']">
+    Please enter DOB in DD-MM-YYYY format (e.g., 10-10-2025).
+  </mat-error>
+</mat-form-field>
+
+
+  <!-- Gender Field -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Gender</mat-label>
+    <mat-select 
+      id="gender" 
+      name="gender" 
+      [(ngModel)]="teacher.gender" 
+      required
+      #gender="ngModel"
+    >
+      <mat-option value="">Select Gender</mat-option>
+      <mat-option value="male">Male</mat-option>
+      <mat-option value="female">Female</mat-option>
+      <mat-option value="other">Other</mat-option>
+    </mat-select>
+  
+    <!-- Error Message for Required Field -->
+    <mat-error *ngIf="gender?.errors?.['required'] && gender?.touched">
+      Gender selection is required.
+    </mat-error>
+  </mat-form-field>
+  
+
+  <!-- Age Field -->
+ <!-- Age Field -->
+ 
+
+
+
+
+  <!-- Submit and Cancel Buttons -->
+  <div class="button-container">
+    <button mat-raised-button color="primary" class="add-button" [disabled]="!teacherForm.valid" type="submit">
+      ADD TEACHER
+    </button>
+
+    <button mat-button color="warn" class="cancel-button" (click)="onCancel()">Cancel</button>
+   
+  </div>
+</form>

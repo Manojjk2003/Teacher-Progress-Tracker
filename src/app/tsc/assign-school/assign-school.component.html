@@ -1,0 +1,27 @@
+<span [routerLink]="['/tsc-navbar/assign-organization']">{{ capitalizeFirstLetter(organizationName) }}</span>
+<p class="text">Assigned Schools</p>
+
+<!-- Loading Indicator -->
+<div *ngIf="loading">Loading assigned schools...</div>
+
+<!-- Error Message -->
+<div *ngIf="error" class="error">{{ error }}</div>
+
+<!-- Display Schools -->
+<mat-card class="school-card" *ngFor="let school of schools" (click)="navigateToAssignTeacher(school.schoo_id)">
+  <mat-card-header>
+    <mat-card-title>{{ capitalizeFirstLetter(school.school_name) }}</mat-card-title>
+    <!-- <mat-card-subtitle><strong>Address:</strong>  {{ school.address }}</mat-card-subtitle> -->
+  </mat-card-header>
+
+  <mat-card-content>
+    <p><strong>Address: </strong> {{ school.address }}</p>
+    <p><strong>Contact No:</strong> {{ school.contact }}</p>
+    <p><strong>Email:</strong> {{ school.email_id }}</p>
+  </mat-card-content>
+</mat-card>
+
+<!-- Optional: Add a message if no schools are assigned -->
+<ng-container *ngIf="schools.length === 0 && !loading">
+  <p>No schools assigned.</p>
+</ng-container>

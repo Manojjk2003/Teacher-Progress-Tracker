@@ -1,0 +1,119 @@
+<form #organizationForm="ngForm" (ngSubmit)="onSubmit(organizationForm)" class="organization-form">
+  <h3 class="form-title">Add organization</h3>
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Organization Name</mat-label>
+      <input
+        matInput
+        name="organization_name"
+        ngModel
+        required
+        (input)="blockNumbers($event)"
+        #organizationName="ngModel"
+      />
+      <mat-error *ngIf="organizationName?.errors?.['required']">
+        Organization name is required.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Contact Person</mat-label>
+      <input
+        matInput
+        name="contact_person"
+        ngModel
+        required
+        (input)="blockNumbers($event)"
+        #contactPerson="ngModel"
+      />
+      <mat-error *ngIf="contactPerson?.errors?.['required']">
+        Contact person is required.
+      </mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        name="email"
+        ngModel
+        type="email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
+        #email="ngModel"
+      />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['pattern']">
+        Please enter a valid Gmail address.
+      </mat-error>
+    </mat-form-field> -->
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        name="email"
+        ngModel
+        type="email"
+        required
+        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|in)$"
+        #email="ngModel"
+      />
+      <mat-error *ngIf="email?.errors?.['required']">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="email?.errors?.['pattern']">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Phone Number</mat-label>
+      <span matPrefix style="margin-left: 10px;">+91 &nbsp;</span>
+      <input
+        matInput
+        name="ph_no"
+        ngModel
+        required
+        maxlength="10"
+        minlength="10"
+        pattern="^[0-9]{10}$"
+        type="text"
+        (input)="blockAlphabetics($event)"
+        #phoneNumber="ngModel"
+      />
+      <mat-error *ngIf="phoneNumber?.errors?.['required']">
+        Phone number is required.
+      </mat-error>
+      <mat-error *ngIf="phoneNumber?.errors?.['pattern']">
+        Phone number must be exactly 10 digits.
+      </mat-error>
+    </mat-form-field>
+    
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Address</mat-label>
+      <input matInput name="address" ngModel required #address="ngModel" />
+      <mat-error *ngIf="address?.errors?.['required']">
+        Address is required.
+      </mat-error>
+    </mat-form-field>
+  </mat-card-content>
+
+  <mat-card-actions class="button-container">
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      class="add-button"
+      [disabled]="!organizationForm.valid"
+    >
+      Add Organization
+    </button>
+    <button mat-raised-button color="warn" type="button" class="cancel-button" (click)="onCancel()">
+      Cancel
+    </button>
+  </mat-card-actions>
+</form>

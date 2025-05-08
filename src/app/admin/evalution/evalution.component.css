@@ -1,0 +1,117 @@
+/* Container Styling */
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Organization Header */
+h2 {
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* School Cards Grid Layout */
+.school-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Mat Card Styling */
+mat-card.school-card {
+  background-color:  #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card.school-card:hover {
+  transform: translateY(-5px);
+}
+
+mat-card-header {
+  margin-bottom: 10px;
+}
+
+mat-card-title {
+  font-size: 1.5em;
+  color: black;
+  margin-bottom: 5px;
+}
+
+mat-card-subtitle,
+mat-card-content p {
+  font-size: 0.9em;
+  color: #555;
+  margin: 5px 0;
+}
+
+mat-card-subtitle strong,
+mat-card-content p strong {
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .school-cards {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .school-cards {
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+  }
+}
+
+/* Search and Add Button Section */
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+mat-form-field.search-bar {
+  width: 40%;
+}
+
+button.mat-raised-button.add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: black;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button.add-button:hover {
+  background-color: black;
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 576px) {
+  mat-form-field.search-bar {
+    width: 100%;
+  }
+
+  .search-add-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  button.mat-raised-button.add-button {
+    margin-top: 10px;
+    width: 100%;
+  }
+}

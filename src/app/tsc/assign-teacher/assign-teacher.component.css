@@ -1,0 +1,93 @@
+/* Base styles for Teacher Cards */
+.teacher-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: left; /* Center align items */
+}
+
+/* Responsive Teacher Card */
+.teacher-card {
+    width: 100%; /* Full width by default */
+    max-width: 350px; /* Limit max width */
+    margin: 10px; /* Margin around each card */
+    box-sizing: border-box;
+}
+
+/* Responsive Grid for Larger Screens */
+@media (min-width: 768px) {
+    .teacher-card {
+        width: 48%; /* Two cards per row on tablets */
+    }
+}
+
+@media (min-width: 1024px) {
+    .teacher-card {
+        width: 30%; /* Three cards per row on larger screens */
+    }
+}
+
+/* Table Layout - Responsive */
+.table-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+/* Two-column table layout on larger screens */
+@media (min-width: 768px) {
+    .table-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .table-section {
+        flex: 1;
+        margin: 10px;
+        padding: 10px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+}
+
+/* Table Adjustments */
+.mat-table {
+    width: 100%;
+}
+
+/* Dialog Styling */
+.mat-dialog-container {
+    width: 90%;
+    max-width: 1200px;
+    max-height: 80vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Dialog content scrollable */
+.mat-dialog-content {
+    overflow-y: auto;
+    max-height: calc(80vh - 40px);
+}
+
+/* Mat-Card Header */
+mat-card-header {
+    background-color: #f5f5f5;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 480px) {
+    .teacher-card {
+        width: 90%; /* Cards take more space on small screens */
+    }
+
+    .table-section {
+        padding: 5px;
+        margin: 5px;
+    }
+
+    .mat-dialog-container {
+        width: 95%;
+    }
+}

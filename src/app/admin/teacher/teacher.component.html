@@ -1,0 +1,112 @@
+<h2>Teachers</h2>
+
+<div class="teacher-container">
+  <!-- Search Input -->
+  <div class="search-add-container">
+    <div class="search-container">
+      <mat-form-field class="search-bar" appearance="outline">
+        <mat-label>Search Teachers</mat-label>
+        <input
+          matInput
+          [(ngModel)]="searchQuery"
+          (input)="onSearchChange()"
+          placeholder="Search by name, email, or contact"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button class="add-button1" color="primary" (click)="openAddTeacherDialog()">Add Teacher</button>
+  </div>
+
+  <!-- Teacher Cards -->
+  <div class="teacher-container">
+    <div class="row">
+      <mat-card class="teacher-card" *ngFor="let teacher of filteredTeachers">
+        <mat-card-content>
+          <h3>{{ capitalizeFirstLetter(teacher.name) }}</h3>
+          <p><strong>Email:</strong> {{ teacher.email }}</p>
+          <p><strong>Contact:</strong> {{ teacher.contactNo }}</p>
+          <p><strong>School:</strong> {{ teacher.schoolName }}</p>
+          <p><strong>Number of Students:</strong> {{ teacher.numberOfStudents }}</p>
+          <p><strong>Grades:</strong> {{ teacher.grades }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button color="primary" matTooltip="Edit Teacher" (click)="openEditTeacherDialog(teacher)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" matTooltip="Delete Teacher" (click)="onDeleteTeacher(teacher)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #deleteConfirmDialog>
+  <h2 mat-dialog-title>Delete Teacher</h2>
+  <mat-dialog-content>
+    <p>Are you sure you want to delete this teacher?</p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button (click)="closeDialog()">Cancel</button>
+    <button mat-button color="warn" (click)="deleteTeacher(selectedTeacher.teacherId)">Delete</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<!-- Edit Teacher Dialog -->
+<ng-template #editTeacherDialog>
+ 
+
+    <form [formGroup]="editTeacherForm" class="tsc-form">
+      <div class="form-title">Edit Teacher Details</div>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter teacher's name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Enter teacher's email" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Phone Number</mat-label>
+        <span matPrefix style="margin-left: 10px;">   +91 &nbsp;</span>
+        <input matInput formControlName="contactNo" placeholder="Enter teacher's contact number" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>School</mat-label>
+        <mat-select formControlName="schoolName">
+          <mat-option *ngFor="let school of schools" [value]="school.id">
+            {{ school.school_name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Number of Students</mat-label>
+        <input matInput formControlName="numberOfStudents" placeholder="Enter number of students"  matInput 
+        type="number" 
+        id="numberOfStudents" 
+        name="numberOfStudents"  placeholder="Enter number of students" 
+        min="0" 
+        max="200"
+        (keydown)="preventNegative($event)" />
+
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Grades</mat-label>
+        <input matInput formControlName="grades" placeholder="Enter student count (e.g., 10, 9)" />
+      </mat-form-field>
+
+      <div class="button-container">
+        <button mat-button class="cancel-button" (click)="closeDialog()">Cancel</button>
+        <button mat-button class="add-button" (click)="saveChanges()">Save</button>
+      </div>
+    </form>
+
+</ng-template>

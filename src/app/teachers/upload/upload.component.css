@@ -1,0 +1,46 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Custom styling for Material tabs */
+::ng-deep {
+  .mat-mdc-tab-group {
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .mat-mdc-tab-header {
+    background-color: #FF6B00;
+  }
+
+  .mat-mdc-tab-label {
+    color: white !important;
+    opacity: 1 !important;
+    font-weight: normal;
+  }
+
+  .mat-mdc-tab-label-active {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .mat-mdc-tab-body-content {
+    padding: 20px 0;
+  }
+
+  /* Indicator color */
+  .mat-mdc-tab-group.mat-primary .mat-mdc-tab-indicator {
+    background-color: white;
+  }
+}
+
+.project-form {
+  margin-top: 20px;
+}

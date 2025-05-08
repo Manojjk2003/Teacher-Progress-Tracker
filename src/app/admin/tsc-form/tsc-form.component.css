@@ -1,0 +1,56 @@
+.tsc-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.form-title {
+  font-size: 15px; /* Adjust font size */
+  font-weight: bold; /* Make the title bold */
+  text-align: center; /* Center the title */
+  margin-bottom: 20px; /* Add space below the title */
+  color: #151414; /* Neutral color for the title */
+}
+ 
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.gender-group {
+  margin-bottom: 15px;
+}
+
+.gender-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+mat-radio-button {
+  margin-right: 15px;
+}
+
+.add-button {
+  width: 100%;
+  padding: 8px;
+  background-color: #ffd740;
+  color: black;
+}
+
+.cancel-button {
+  width: 60%;
+  padding: 8px;
+  background-color: #f44336; /* Red color */
+  color: white;
+}
+
+/* Button container to align buttons in a single line */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px; /* Add some space between the buttons */
+}
+
+.button-container button {
+  flex: 1; /* Ensures both buttons take equal width */
+}

@@ -1,0 +1,170 @@
+<div>
+  <h2>Welcome, {{ capitalizeFirstLetter(teacher.teacher_name) }}</h2>
+</div>
+
+<div class="overview-boxes">
+  <mat-card class="box small">
+    <h4>No. of Grades</h4>
+    <p>{{ teacher.distinct_grades }}</p>
+  </mat-card>
+  <mat-card class="box small">
+    <h4>No. of Students</h4>
+    <p>{{ teacher.total_students }}</p>
+  </mat-card>
+  <mat-card class="box small">
+    <h4>No. of Teacher Projects</h4>
+    <p>{{ teacher.num_teacher_projects }}</p>
+  </mat-card>
+  <mat-card class="box small">
+    <h4>No. of Student Projects</h4>
+    <p>{{ teacher.num_student_projects }}</p>
+  </mat-card>
+  </div>
+
+
+<div class="projects-container">
+ 
+  <!-- Teacher Projects -->
+  <mat-card class="teacher-projects mat-elevation-z8">
+    <h3>Teacher Projects</h3>
+    <table mat-table [dataSource]="teacherProjectsDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef> SL. No. </th>
+        <td mat-cell *matCellDef="let project; let i = index">
+          {{ (teacherPaginator.pageIndex * teacherPaginator.pageSize) + i + 1 }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="project_link">
+        <th mat-header-cell *matHeaderCellDef> Project Link </th>
+        <td mat-cell *matCellDef="let project">
+          <a mat-button href="{{ project.project_link }}" target="_blank">{{ project.project_link }}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="uploaded_time">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="header-container">
+            Date
+            <button mat-icon-button (click)="openFilter('uploaded_time', 'teacher')" matTooltip="Filter by Uploaded Time">
+              <mat-icon>filter_alt</mat-icon>
+            </button>
+          </span>
+        </th>
+      
+      
+        
+        
+        <!-- <td mat-cell *matCellDef="let project">{{ project.uploaded_time }}</td> -->
+        <td mat-cell *matCellDef="let project">
+          {{ project.uploaded_time | date: 'MMM d, y' }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let project">
+          <button mat-icon-button matTooltip="{{ project.status === 'completed' ? 'Completed' : 'Pending' }}">
+            <mat-icon 
+              [ngClass]="project.status === 'completed' ? 'icon-green' : 'icon-gray'">
+              {{ project.status === 'completed' ? 'check_circle' : 'radio_button_unchecked' }}
+            </mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let project">
+          <button mat-icon-button (click)="viewProject(project.project_link, project.project_id, 'teacher')">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDeleteConfirmationDialog(project, 'teacher')">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator #teacherPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+  </mat-card>
+
+  <!-- Student Projects -->
+  <mat-card class="student-projects mat-elevation-z8">
+    <h3>Student Projects</h3>
+    <table mat-table [dataSource]="studentProjectsDataSource" class="mat-elevation-z8">
+      <ng-container matColumnDef="sno">
+        <th mat-header-cell *matHeaderCellDef> SL. No. </th>
+        <td mat-cell *matCellDef="let project; let i = index">
+          {{ (studentPaginator.pageIndex * studentPaginator.pageSize) + i + 1 }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="project_link">
+        <th mat-header-cell *matHeaderCellDef> Project Link </th>
+        <td mat-cell *matCellDef="let project">
+          <a mat-button href="{{ project.project_link }}" target="_blank">{{ project.project_link }}</a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="uploaded_time">
+        <th mat-header-cell *matHeaderCellDef>
+          <span class="header-container">
+          Date
+          <button mat-icon-button  (click)="openFilter('uploaded_time', 'student')" matTooltip="Filter by Uploaded Time">
+            <mat-icon>filter_alt</mat-icon>
+          </button>
+          </span>
+        </th>
+        <!-- <th mat-header-cell *matHeaderCellDef>
+          <span class="header-container">
+            Date
+            <button mat-icon-button(click)="openFilter('uploaded_time', 'student')"  matTooltip="Filter by Uploaded Time">
+              <mat-icon>filter_alt</mat-icon>
+            </button>
+          </span>
+        </th> -->
+        
+      <!-- <td mat-cell *matCellDef="let project">{{ project.uploaded_time }}</td> -->
+      <td mat-cell *matCellDef="let project">
+        {{ project.uploaded_time | date: 'MMM d, y' }}
+      </td>
+    </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let project">
+          <button mat-icon-button matTooltip="{{ project.status === 'completed' ? 'Completed' : 'Pending' }}">
+            <mat-icon 
+              [ngClass]="project.status === 'completed' ? 'icon-green' : 'icon-gray'">
+              {{ project.status === 'completed' ? 'check_circle' : 'radio_button_unchecked' }}
+            </mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let project">
+          <button mat-icon-button (click)="viewProject(project.project_link, project.project_id, 'student')">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="openDeleteConfirmationDialog(project, 'student')">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+ <!-- Add mat-paginator to your component template -->
+
+ <mat-paginator #studentPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+  </mat-card>
+</div>

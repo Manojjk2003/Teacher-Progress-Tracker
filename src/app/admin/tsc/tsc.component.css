@@ -1,0 +1,225 @@
+/* TSC Container */
+.tsc-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Add TSC Button Container */
+.add-tsc-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.search-bar {
+  width: 100%; /* Make the search bar responsive */
+  max-width: 400px; /* Set a maximum width for larger screens */
+  margin: 10px auto; /* Add space around the search bar */
+}
+
+.search-bar mat-form-field {
+  width: 100%; /* Ensure the form field spans its container */
+}
+
+.search-bar input {
+  font-size: 16px; /* Set a readable font size */
+  color: #333; /* Neutral text color for the input */
+}
+
+.search-bar input::placeholder {
+  color: #aaa; /* Subtle color for placeholder text */
+}
+
+.search-bar mat-form-field.mat-form-field-appearance-fill {
+  background-color: #f9f9f9; /* Light background for better contrast */
+  border-radius: 4px; /* Rounded corners for a smooth look */
+}
+
+.search-bar mat-form-field .mat-form-field-wrapper {
+  padding: 8px; /* Add spacing inside the field */
+}
+
+.search-bar mat-form-field .mat-form-field-label {
+  color: #666; /* Subtle color for the label */
+  font-weight: bold; /* Make the label stand out */
+}
+
+.search-bar mat-form-field .mat-form-field-outline {
+  border-color: #ccc; /* Light border color */
+}
+
+.search-bar mat-form-field:hover .mat-form-field-outline {
+  border-color: #007bff; /* Highlight border on hover */
+}
+
+.search-bar mat-form-field.mat-focused .mat-form-field-outline {
+  border-color: #007bff; /* Active border color */
+}
+
+.search-bar mat-form-field.mat-focused .mat-form-field-label {
+  color: #007bff; /* Active label color */
+}
+
+h2{
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* TSC Cards */
+.tsc-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* TSC Card */
+.tsc-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.tsc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tsc-card h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.tsc-card p {
+  margin: 5px 0;
+  color: #141414;
+  font-size: 16px;
+}
+
+.mat-mdc-card-title, .mat-mdc-card-subtitle {
+  display: block;
+  margin: 15px;
+}
+
+/* Action Buttons Styling */
+.tsc-card-actions {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.tsc-card-actions button {
+  font-size: 14px;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.tsc-card-actions button.mat-raised-button {
+  font-size: 16px;
+}
+
+button.mat-raised-button {
+  background-color: #007bff;
+}
+
+button.mat-raised-button:hover {
+  background-color: #0056b3;
+}
+
+button.mat-raised-button.delete-button {
+  background-color: #dc3545;
+}
+
+button.mat-raised-button.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Layouts */
+@media (max-width: 768px) {
+  .tsc-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .tsc-card {
+    width: 100%;
+  }
+}
+
+/* Search and Add Button Row */
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Search Bar Styling */
+.search-container {
+  width: 60%;
+}
+
+mat-form-field.search-bar {
+  width: 100%;
+}
+
+/* Add Button Styling */
+.add-button {
+  margin-left: auto;
+}
+
+button.mat-raised-button.add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #28a745;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button.add-button:hover {
+  background-color: #218838;
+}
+
+/* Placeholder Styling for Mat Input */
+.mat-form-field-wrapper {
+  font-size: 14px;
+  color: #6c757d;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-outline {
+  border-color: #ced4da;
+}
+
+.success-snackbar {
+  background-color: #4caf50; /* Green color for success */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.error-snackbar {
+  background-color: #f44336; /* Red color for error */
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+mat-icon{
+  color:#005cbb ;
+}

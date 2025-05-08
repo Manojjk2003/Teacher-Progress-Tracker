@@ -1,0 +1,22 @@
+<!-- Organization Details -->
+ <h2>Organizations</h2>
+<div *ngIf="organization" class="organization-card">
+    <mat-card (click)="navigateToEvaluation(organization)">
+      <mat-card-header>
+        <mat-card-title>{{ capitalizeFirstLetter(organization.organization_name) }}</mat-card-title>
+        <mat-card-subtitle>Contact: {{ organization.contact_person }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Email:</strong> {{ organization.email }}</p>
+        <p><strong>Phone:</strong> {{ organization.ph_no }}</p>
+        <p><strong>Address:</strong> {{ organization.address }}</p>
+      
+     
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <!-- Error or Loading -->
+  <div *ngIf="isLoading" class="loading-spinner">Loading...</div>
+  <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  

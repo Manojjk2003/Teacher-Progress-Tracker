@@ -1,0 +1,206 @@
+.project-upload-card {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 24px;
+  background: linear-gradient(90deg, rgba(254, 136, 0, 1) 0%, rgba(248, 55, 0, 1) 100%, rgba(250, 250, 250, 1) 100%);
+  color: white;
+}
+
+.card-title {
+  text-align: center;
+  color: white;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.student-info-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.info-section {
+  flex: 1;
+  min-width: 0;
+ 
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: white;
+  font-weight: 500;
+
+}
+
+.full-width {
+  width: 100%;
+  
+}
+
+/* Input field styling */
+::ng-deep {
+  .mat-mdc-text-field-wrapper,
+  .mdc-text-field,
+  .mdc-text-field--outlined {
+      background-color: white !important;
+  }
+
+  .mdc-text-field__input {
+      color: rgba(242, 239, 239, 0.87);
+  }
+
+  .mat-mdc-form-field input::placeholder,
+  .mat-mdc-form-field textarea::placeholder {
+      color: rgba(0, 0, 0, 0.4);
+  }
+
+  /* Remove borders */
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+      border-color: transparent !important;
+  }
+}
+
+.radio-group {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  min-height: 56px;
+}
+
+/* Radio button styling */
+::ng-deep {
+  .mat-mdc-radio-button {
+      .mdc-form-field {
+          color: white;
+      }
+
+      .mdc-radio {
+          .mdc-radio__background {
+              border-color: white;
+          }
+
+          .mdc-radio__inner-circle {
+              border-color: white;
+          }
+      }
+
+      &.mat-mdc-radio-checked .mdc-radio__background {
+          border-color: white;
+      }
+  }
+}
+
+.mat-mdc-text-field-wrapper {
+  height: auto;
+  flex: auto;
+  will-change: auto;
+  background-color: wheat;
+}
+
+.project-link-row {
+  margin-bottom: 16px;
+}
+
+.project-input-group {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+ 
+
+}
+
+.project-input-group mat-form-field {
+  flex: 1;
+
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field .mat-input-element {
+  background-color: white; /* Set the background color of the input */
+  border: 1px solid #3f51b5; /* Set the border color for the input field outline */
+  /* Optional: Adjust padding if needed */
+}
+
+mat-form-field .mat-form-field-underline {
+  display: none; /* Hide the default underline */
+}
+
+mat-form-field .mat-form-field-outline {
+  border: 1px solid #3f51b5; /* Set the outline border color */
+}
+
+.bottom-section {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.buttons-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 200px;
+}
+
+.feedback-section {
+  flex: 1;
+}
+
+.add-project-btn,
+.submit-btn {
+  width: 100%;
+  height: 45px;
+  background-color: white !important;
+  color: #FF6B35 !important;
+}
+
+button[color="warn"] {
+  background-color: white !important;
+  color: #FF6B35 !important;
+}
+
+@media (max-width: 768px) {
+  .student-info-container {
+      flex-direction: column;
+  }
+
+  .bottom-section {
+      flex-direction: column-reverse;
+  }
+
+  .buttons-column {
+      width: 100%;
+  }
+
+  .project-input-group {
+      flex-direction: column;
+     
+  }
+
+  .project-input-group button {
+      width: 100%;
+  }
+
+}
+
+mat-error{
+  color: #030D47;
+}
+
+.success-snackbar {
+  background-color: green;
+  color: white;
+}
+
+.error-snackbar {
+  background-color: red;
+  color: white;
+}
+

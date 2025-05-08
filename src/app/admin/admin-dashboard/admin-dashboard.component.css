@@ -1,0 +1,213 @@
+/* Main Section Styles */
+.welcome-section {
+  padding: 24px;
+  background-color: #f8fafc;
+}
+
+.dashboard-title {
+  font-size: 24px;
+  color: #1a365d;
+  margin-bottom: 24px;
+}
+
+/* Dashboard Stats Cards */
+.dashboard-stats .stat-item {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.dashboard-stats .stat-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  opacity: 0.9;
+}
+
+.stat-value {
+  margin-top: 8px;
+}
+
+/* Trophy Section Styles */
+.trophy-section h3 {
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.trophy-container {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.trophy-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+.trophy-container:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* Teacher Highlights Section */
+.trophy-section {
+  margin-top: 24px; /* Added margin-top for normal screen sizes */
+}
+
+/* Table Styles */
+.teacher-table-section {
+  margin-top: 24px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+mat-table {
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+mat-header-cell {
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 16px;
+}
+
+mat-cell {
+  color: #2d3748;
+  font-size: 14px;
+  padding: 16px;
+}
+
+mat-row:hover {
+  background: #f7fafc;
+  cursor: pointer;
+}
+
+/* Paginator Styles */
+mat-paginator {
+  background: white;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  /* Stack columns for tablets */
+  .row {
+    flex-direction: column;
+  }
+
+  .dashboard-stats,
+  .trophy-section {
+    width: 100% !important;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* Adjust the stat card height on smaller screens */
+  .stat-item {
+    height: auto !important;
+  }
+
+  /* Adjust Teacher Highlights */
+  .trophy-section {
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack all elements on smaller screens */
+  .dashboard-title {
+    font-size: 20px;
+  }
+
+  .dashboard-stats,
+  .trophy-section {
+    width: 100% !important;
+
+  }
+
+  .trophy-section {
+    margin-top: 40px; /* Adjusted top margin for smaller screens */
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  mat-header-cell,
+  mat-cell {
+    padding: 12px 8px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 640px) {
+  /* Make everything stack for small mobile screens */
+  .dashboard-title {
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .dashboard-stats .stat-item {
+    padding: 16px;
+  }
+
+  .trophy-section {
+    width: 100%;
+    margin-top: 8px; /* Further adjusted top margin for mobile screens */
+  }
+
+  .trophy-container {
+    height: 160px;
+    padding: 16px;
+  }
+
+  .stat-item {
+    height: auto;
+    padding: 16px;
+  }
+
+  .teacher-table-section mat-header-cell,
+  .teacher-table-section mat-cell {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  mat-header-cell,
+  mat-cell {
+    font-size: 12px;
+  }
+
+  .row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dashboard-stats,
+  .trophy-section {
+    width: 100%;
+  }
+}
+
+.mat-mdc-card-title,
+.mat-mdc-card-subtitle {
+  display: block;
+  margin: 0;
+}
+
+.trophy-section[_ngcontent-ng-c1291804977] h3[_ngcontent-ng-c1291804977] {
+  margin: 40px;
+  padding-bottom: 8px;
+}
+

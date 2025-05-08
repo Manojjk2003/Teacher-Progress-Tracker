@@ -1,0 +1,70 @@
+<mat-card class="project-upload-card">
+  <mat-card-title class="card-title">Teacher Project Upload</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+      <div formArrayName="projectLinks">
+        <div *ngFor="let link of projectLinks.controls; let i = index" 
+             [formGroupName]="i" 
+             class="project-link-row">
+          <label class="field-label" >Project Link {{i + 1}}</label>
+          <div class="project-input-group">
+            <mat-form-field appearance="outline">
+              <input matInput 
+                     formControlName="link" 
+                     placeholder="Enter project URL">
+                     <mat-error *ngIf="link.get('link')?.hasError('pattern')">
+                      Please enter a valid Scratch project URL (e.g., https://scratch.mit.edu/projects/12345678)
+                    </mat-error>
+                    <mat-error *ngIf="link.get('link')?.hasError('maxlength')">
+                      URL exceeds the maximum length (50 characters)
+                    </mat-error>
+            </mat-form-field>
+            <!-- <button type="button" 
+                    mat-raised-button 
+                    color="warn" 
+                    (click)="removeProjectLink(i)" 
+                    [disabled]="projectLinks.length === 1">
+              Remove
+            </button> -->
+            <button *ngIf="i === 0" type="button" mat-raised-button color="warn" (click)="clearProjectLink(i)">
+              Remove
+            </button>
+      
+            <!-- Show "Remove" button for additional inputs -->
+            <button *ngIf="i > 0" type="button" mat-raised-button color="warn" (click)="removeProjectLink(i)"   [disabled]="projectLinks.length === 1">
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-section">
+        <div class="buttons-column">
+          <button type="button" 
+                  mat-stroked-button 
+                  (click)="addProjectLink()" 
+                  class="add-project-btn">
+            Add Project
+          </button>
+          <button mat-raised-button 
+                  color="primary" 
+                  class="submit-btn" 
+                  type="submit" 
+                  [disabled]="!projectForm.valid || isLoading">
+            {{isLoading ? 'Uploading...' : 'Submit'}}
+          </button>
+        </div>
+
+        <div class="feedback-section">
+          <mat-form-field appearance="outline" class="full-width">
+            <textarea matInput 
+                      formControlName="comments" 
+                      rows="4" 
+                      placeholder="Enter constructive feedback.">
+            </textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

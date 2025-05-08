@@ -1,0 +1,88 @@
+<div>
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb-navigation">
+      <ng-container *ngFor="let item of breadcrumb; let i = index">
+        <span *ngIf="i !== breadcrumb.length - 1 && item.link" [routerLink]="item.link" class="breadcrumb-item">
+          {{ capitalizeFirstLetter(item.name) }}
+        </span>
+        <span *ngIf="i !== breadcrumb.length - 1" class="breadcrumb-separator"> > </span>
+        <span *ngIf="i === breadcrumb.length - 1" class="breadcrumb-item active">
+          {{ capitalizeFirstLetter(item.name) }}
+        </span>
+      </ng-container>
+    </nav>
+    
+  </div>
+  
+  <div class="container">
+    <!-- Left Column -->
+    <div class="left-column">
+      <div class="project-section">
+        <iframe
+          [src]="safeProjectLink"
+          class="project-title"
+          title="Project Preview"
+          width="100%"
+          height="400px"
+        ></iframe>
+      </div>
+      <button class="submit-button2" *ngIf="projectLink" (click)="onSeeInside()">See Inside</button>
+    </div>
+  
+    <!-- Right Column -->
+    <div class="right-column">
+      <!-- Evaluation Metrics -->
+      <div class="evaluation-metrics">
+        <div class="section-title">Evaluation Metrics</div>
+        <div class="metrics-list">
+          <div class="metric" *ngFor="let metric of metrics">
+            <span>{{ metric.name }}</span>
+            <input
+              type="number"
+              min="0"
+              max="10" 
+              [(ngModel)]="metric.value"
+              (input)="validateInput(metric)"
+              [disabled]="!metric.isEditable"
+              class="metric-box"
+                (keydown)="preventNegative($event)"
+            />
+          </div>
+        </div>
+        <!-- <button class="edit-button" (click)="toggleEdit()">
+          {{ isEditing ? 'Save' : 'Edit' }}
+        </button> -->
+      </div>
+  
+      <!-- Score Section -->
+      <div class="score-section">
+        <div class="score-content">
+          <span class="score-title">Total Score:</span>
+          <span class="score-box">{{ score }}</span>
+        </div>
+      </div>
+  
+      <!-- Feedback -->
+      <div class="feedback-section">
+        <h2 class="section-title">Give Feedback</h2>
+       
+        <textarea class="feedback-box" [(ngModel)]="feedback" placeholder="Enter feedback" rows="4"></textarea>
+  
+        
+      </div>
+  
+      <!-- Submit Button -->
+      <!-- Other HTML content -->
+  
+  <!-- Submit Button -->
+  <!-- <button class="submit-button" (click)="submitScores()">Submit</button> -->
+  <!-- Submit/Update Button -->
+  <button class="submit-button" (click)="status === 'completed' ? updateScore() : submitScores()">
+    {{ status === 'completed' ? 'Update' : 'Submit' }}
+  </button>
+  
+  
+  
+  
+    </div>
+  </div>

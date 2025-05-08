@@ -1,0 +1,22 @@
+.organization-card {
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.3s;
+    width: 250px; /* Set a fixed width */
+    height: auto; /* Adjust the height based on content */
+    padding: 10px; /* Adjust the padding to make the card less spacious */
+  }
+  
+  .loading-spinner {
+    text-align: left;
+    font-size: 18px;
+    color: black;
+  }
+  
+  .error-message {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  

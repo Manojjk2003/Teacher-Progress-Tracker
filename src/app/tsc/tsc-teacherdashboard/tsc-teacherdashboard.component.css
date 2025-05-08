@@ -1,0 +1,222 @@
+/* General Layout */
+.projects-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%; /* Adjust width for better layout */
+    margin: 0 auto; /* Center align the container */
+  }
+  
+  .teacher-projects, .student-projects {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  /* Table Title Styling */
+  h3 {
+    margin-left: 10px; /* Add a margin above the table title */
+    font-size: 18px; /* Title font size */
+    font-weight: bold; /* Bold title */
+    color: #333; /* Title color */
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%; /* Ensure the table takes full width of the container */
+    margin: 10px 0; /* Center the table and provide equal spacing */
+    border-collapse: collapse;
+    border: 1px solid #333; /* Subtle border */
+    font-size: 12px; /* Smaller font size */
+    background-color: #f9f9f9; /* Light background for contrast */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  }
+  
+  /* Table Header and Data Styling */
+  th, td {
+    padding: 4px 8px; /* Reduced padding for compactness */
+    text-align: left;
+    border: 1px solid #333; /* Consistent borders */
+  }
+  
+  /* Header Styling */
+  th {
+    background-color: #007bff; /* Blue background for the header */
+    color: rgb(9, 9, 9); /* White text for the header */
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase header text */
+  }
+  
+  /* Data Cell Styling */
+  td {
+    background-color: #fff; /* Clean cells */
+  }
+  
+  td:hover {
+    background-color: #f1f1f1; /* Highlight row on hover */
+  }
+  
+  /* No Data Message */
+  p {
+    text-align: center;
+    color: #444;
+    font-style: italic;
+    font-size: 13px;
+  }
+  
+  /* Buttons Styling */
+  .action-btn {
+    padding: 5px 8px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .view-btn {
+    background-color: #007BFF;
+    color: white;
+    border: 2px solid #0056b3; /* Dark border for highlight */
+  }
+  
+  .view-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .delete-btn {
+    background-color: #DC3545;
+    color: white;
+    border: 2px solid #a71d2a; /* Darker delete border */
+  }
+  
+  .delete-btn:hover {
+    background-color: #a71d2a;
+  }
+  
+  /* Overview Boxes Layout */
+  .overview-boxes {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  /* Scores Section Layout */
+  .scores-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  /* Small Box Styling */
+  .box.small,
+  .score-box.small {
+    flex: 1;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-right: 8px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+    line-height: 1.4;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  
+  .box.small:last-child,
+  .score-box.small:last-child {
+    margin-right: 0;
+  }
+  
+  /* Highlight Effect for Small Boxes */
+  .box.small:hover,
+  .score-box.small:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-color: #007bff;
+    background-color: #f0f8ff; /* Slight blue tint */
+  }
+  
+  /* Filter Box Styling */
+  .filter-box.small {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .filter-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .filter-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Adjust Text for Smaller Size */
+  .box.small h4,
+  .score-box.small h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: normal; /* Keep the header lighter */
+  }
+  
+  .box.small p,
+  .score-box.small p {
+    font-size: 12px;
+    margin: 0;
+    font-weight: bold; /* Make the main content bold */
+  }
+  
+  /* Responsive Layout for Small Screens */
+  @media (max-width: 768px) {
+    .projects-container {
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px; /* Add padding for better spacing on small screens */
+    }
+  
+    .teacher-projects, .student-projects {
+      flex: none;
+      width: 100%; /* Full width for project cards on small screens */
+      margin-bottom: 20px;
+    }
+  
+    table {
+      width: 100%; /* Full width for table on small screens */
+      table-layout: fixed; /* Prevent overflow and ensure table stays within the container */
+    }
+  
+    .overview-boxes {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .box.small,
+    .score-box.small {
+      margin-right: 0;
+      width: 100%; /* Full-width boxes on small screens */
+      margin-bottom: 15px;
+    }
+  
+    .teacher-projects, .student-projects {
+      padding: 10px;
+    }
+  }
+  .icon-green {
+    color: green;
+  }
+  
+  .icon-gray {
+    color: gray;
+  }
+  

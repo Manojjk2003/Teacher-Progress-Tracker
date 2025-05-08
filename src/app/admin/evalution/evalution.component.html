@@ -1,0 +1,17 @@
+<h4 [routerLink]="['/admin-navbar/all-organization']">{{ capitalizeFirstLetter(organizationName) }}</h4>
+
+<h2>Schools</h2>
+<div class="school-cards" *ngIf="schoolList.length > 0">
+  
+  <mat-card *ngFor="let school of filteredSchoolList" class="school-card" (click)="navigateToAssignTeacher(school.school_id)">
+    <mat-card-header>
+      <mat-card-title>{{ capitalizeFirstLetter(school.school_name) }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-card-subtitle><strong>Email:</strong> {{ school.email }}</mat-card-subtitle>
+      <p><strong>Phone:</strong> {{ school.ph_no }}</p>
+      <p><strong>Address:</strong> {{ school.addr }}</p>
+      <!-- <p><strong>Created At:</strong> {{ school.created_at | date }}</p> -->
+    </mat-card-content>
+  </mat-card>
+</div>

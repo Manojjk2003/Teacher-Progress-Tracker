@@ -1,0 +1,187 @@
+/* Flexbox for Teacher Cards - Display 3 cards per row */
+.teacher-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    width: 1000px;
+}
+
+.teacher-card {
+    width: 33.33%; /* Display 3 cards per row */
+    margin: 10px 0;
+    box-sizing: border-box;
+    background-color:  #f9f9f9;
+}
+
+/* Table layout */
+.table-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.table-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.table-section {
+    flex: 1;
+    margin: 10px;
+    padding: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.mat-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.mat-elevation-z8 {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+mat-dialog-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+mat-card-header {
+    background-color: #f5f5f5;
+}
+
+button.mat-icon-button {
+    margin-left: 10px;
+}
+
+mat-paginator {
+    margin-top: 20px;
+}
+
+.mat-dialog-container {
+    width: 100%;
+    max-width: 1200px;
+    max-height: 80vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.mat-dialog-content {
+    overflow-y: auto;
+    max-height: calc(80vh - 40px);
+}
+
+.table-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.table-section {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Media Queries for Responsive Design */
+
+/* Mobile (up to 600px) */
+@media only screen and (max-width: 600px) {
+    /* Teacher Cards */
+    .teacher-card {
+        width: 100%; /* Stack the cards vertically on smaller screens */
+        margin: 10px 0;
+    }
+
+    /* Adjust the breadcrumb font size */
+    .breadcrumb span {
+        font-size: 14px;
+    }
+
+    /* Breadcrumb links */
+    .breadcrumb a {
+        font-size: 12px; /* Smaller font size for breadcrumbs */
+    }
+
+    /* Adjust margins and paddings in the dialog container */
+    .mat-dialog-container {
+        padding: 10px; /* Reduce padding for mobile */
+    }
+
+    .table-wrapper {
+        flex-direction: column; /* Stack tables vertically */
+        gap: 10px; /* Reduce gap between tables */
+    }
+
+    .table-section {
+        padding: 10px; /* Reduce padding inside table section */
+    }
+
+    /* Adjust font size for table titles */
+    .mat-dialog-title {
+        font-size: 1.2rem;
+    }
+
+    /* Adjust mat-card title size */
+    mat-card-title {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet (601px to 900px) */
+@media only screen and (min-width: 601px) and (max-width: 900px) {
+    /* Teacher Cards */
+    .teacher-card {
+        width: 50%; /* Display 2 cards per row */
+    }
+
+    /* Adjust the breadcrumb font size */
+    .breadcrumb span {
+        font-size: 16px;
+    }
+
+    /* Adjust margins and paddings in the dialog container */
+    .mat-dialog-container {
+        padding: 15px; /* Moderate padding for tablets */
+    }
+
+    .table-wrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .table-section {
+        padding: 15px;
+    }
+
+    /* Adjust font size for table titles */
+    .mat-dialog-title {
+        font-size: 1.3rem;
+    }
+
+    /* Adjust mat-card title size */
+    mat-card-title {
+        font-size: 1.1rem;
+    }
+}
+
+/* Desktop (above 900px) - Already handled by default styles */
+
+/* Larger Screens */
+@media only screen and (min-width: 1200px) {
+    /* Teacher Cards */
+    .teacher-card {
+        width: 33.33%; /* Display 3 cards per row */
+    }
+
+    .breadcrumb {
+        font-size: 18px; /* Increase font size for larger screens */
+    }
+
+    .mat-dialog-title {
+        font-size: 1.5rem;
+    }
+}

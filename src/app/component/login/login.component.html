@@ -1,0 +1,86 @@
+<div class="container-fluid split-page">
+  <!-- Branding Image Section -->
+  <div class="branding-section ml-0">
+    <img src="assets/kiddypi.webp" alt="KiddyPi Branding" class="branding-image">
+</div>
+
+
+  <!-- Login Form Section -->
+  <div class="login-section">
+    <div class="login-container">
+      <div class="login-box">
+        <!-- Logo -->
+        <div class="logo text-center">
+          <img src="assets/icon.jpg" alt="KiddyPi Logo">
+        </div>
+
+        <!-- Login Title -->
+        <h2 class="login-title text-center">Login to Teacher Tracker </h2>
+
+        <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+          <!-- Email Input -->
+          <div class="form-field">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input
+                matInput
+                type="email"
+                [(ngModel)]="email"
+                name="email"
+                required
+                placeholder="Enter your email">
+            </mat-form-field>
+          </div>
+
+        <!-- Password Input -->
+<div class="form-field">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Password</mat-label>
+    <input
+      matInput
+      [type]="passwordVisible ? 'text' : 'password'" 
+      [(ngModel)]="password"
+      name="password"
+      required
+      placeholder="Enter your password">
+    <!-- <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+      <mat-icon>{{ passwordVisible ? 'visibility_off' : 'visibility' }}</mat-icon> 
+    </button> -->
+  </mat-form-field>
+</div>
+
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="alert alert-danger">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Success Message -->
+          <div *ngIf="successMessage" class="alert alert-success">
+            {{ successMessage }}
+          </div>
+
+          <!-- Login Button -->
+          <button
+            mat-raised-button
+            class="login-button"
+            type="submit"
+            [disabled]="isLoading || !loginForm.form.valid">
+            {{ isLoading ? 'Logging in...' : 'Login' }}
+          </button>
+
+          <!-- Forgot Password -->
+          <div class="forgot-password">
+            <button
+              mat-button
+              type="button"
+              (click)="onForgotPassword()"
+              [disabled]="isLoading">
+              Forgot Password?
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+    <h2 class="title">Upload Your Project Links Here</h2>
+  
+    <div class="project-upload">
+      <mat-tab-group mat-align-tabs="center" (selectedTabChange)="onTabChange($event)">
+        <mat-tab label="Teacher Project">
+          <div class="project-form">
+            <app-upload-teacher></app-upload-teacher>
+          </div>
+        </mat-tab>
+        
+        <mat-tab label="Student Project">
+          <div class="project-form">
+            <app-upload-student></app-upload-student>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+

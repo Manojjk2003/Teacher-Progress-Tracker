@@ -1,0 +1,19 @@
+.school-card {
+    cursor: pointer;
+    margin: 10px;
+    transition: transform 0.3s;
+    width: 350px; /* Set a fixed width */
+    height: auto; /* Adjust the height based on content */
+    padding: 10px; /* Adjust the padding to make the card less spacious */
+    
+  }
+  
+  .school-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .text{
+    font-size: 1.5rem;
+    font-weight: bold;
+
+  }

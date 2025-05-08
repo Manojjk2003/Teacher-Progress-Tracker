@@ -1,0 +1,143 @@
+<nav class="breadcrumb">
+  <nav class="breadcrumb">
+    <span *ngIf="organizationName" [routerLink]="['/admin-navbar/all-organization']">{{ capitalizeFirstLetter(organizationName) }}</span> &gt;
+    <span *ngIf="schoolName" [routerLink]="['/admin-navbar/evalution']">{{ capitalizeFirstLetter(schoolName) }}</span> &gt;
+    <span *ngIf="teacherName" [routerLink]="['/admin-navbar/school-teachers']">{{  capitalizeFirstLetter(teacherName) }}</span>
+  </nav>
+  
+</nav>
+
+<div class="overview-boxes">
+    <mat-card class="box small">
+      <h4>Classes Managed</h4>
+      <p>{{ distinctGrades }}</p>
+    </mat-card>
+    <mat-card class="box small">
+      <h4>No. of Students</h4>
+      <p>{{ totalStudents }}</p>
+    </mat-card>
+    <mat-card class="box small">
+      <h4>No. of Teacher Projects</h4>
+      <p>{{ numTeacherProjects }}</p>
+    </mat-card>
+    <mat-card class="box small">
+      <h4>No. of Student Projects</h4>
+      <p>{{ numStudentProjects }}</p>
+    </mat-card>
+  </div>
+  
+  <div class="projects-container">
+    <!-- Teacher Projects -->
+    <mat-card class="teacher-projects mat-elevation-z8">
+      <h3>Teacher Projects</h3>
+      <table mat-table [dataSource]="teacherProjectsDataSource" class="mat-elevation-z8">
+        <!-- Serial Number Column -->
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef> S.No </th>
+          <td mat-cell *matCellDef="let project; let i = index">
+            {{ (teacherPaginator.pageIndex * teacherPaginator.pageSize) + i + 1 }}
+          </td>
+        </ng-container>
+  
+        <!-- Link Column -->
+        <ng-container matColumnDef="link">
+          <th mat-header-cell *matHeaderCellDef> Link </th>
+          <td mat-cell *matCellDef="let project"> {{ project.project_link }} </td>
+        </ng-container>
+  
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let project">
+            <button mat-icon-button matTooltip="{{ project.status === 'completed' ? 'Completed' : 'Pending' }}">
+              <mat-icon [ngClass]="project.status === 'completed' ? 'icon-green' : 'icon-gray'">
+                {{ project.status === 'completed' ? 'check_circle' : 'radio_button_unchecked' }}
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <ng-container matColumnDef="uploaded_time">
+          <th mat-header-cell *matHeaderCellDef> Uploaded Time </th>
+          <td mat-cell *matCellDef="let project">
+            {{ project.uploaded_time | date: 'MMM d, y' }}
+          </td>
+        </ng-container>
+  
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let project">
+            <button mat-icon-button color="primary" (click)="viewProject(project.project_link, project.project_id, 'teacher')">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Table Rows -->
+        <tr mat-header-row *matHeaderRowDef="['sno', 'link', 'status', 'uploaded_time', 'action']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['sno', 'link', 'status', 'uploaded_time', 'action'];"></tr>
+      </table>
+  
+      <!-- Add paginator for Teacher Projects -->
+      <mat-paginator #teacherPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  
+    <!-- Student Projects -->
+    <mat-card class="student-projects mat-elevation-z8">
+      <h3>Student Projects</h3>
+      <table mat-table [dataSource]="studentProjectsDataSource" class="mat-elevation-z8">
+        <!-- Serial Number Column -->
+        <ng-container matColumnDef="sno">
+          <th mat-header-cell *matHeaderCellDef> S.No </th>
+          <td mat-cell *matCellDef="let project; let i = index">
+            {{ (studentPaginator.pageIndex * studentPaginator.pageSize) + i + 1 }}
+          </td>
+        </ng-container>
+  
+        <!-- Link Column -->
+        <ng-container matColumnDef="link">
+          <th mat-header-cell *matHeaderCellDef> Link </th>
+          <td mat-cell *matCellDef="let project"> {{ project.project_link }} </td>
+        </ng-container>
+  
+        <!-- Status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef> Status </th>
+          <td mat-cell *matCellDef="let project">
+            <button mat-icon-button matTooltip="{{ project.status === 'completed' ? 'Completed' : 'Pending' }}">
+              <mat-icon [ngClass]="project.status === 'completed' ? 'icon-green' : 'icon-gray'">
+                {{ project.status === 'completed' ? 'check_circle' : 'radio_button_unchecked' }}
+              </mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Upload Time Column -->
+       <ng-container matColumnDef="uploaded_time">
+    <th mat-header-cell *matHeaderCellDef> Uploaded Time </th>
+    <td mat-cell *matCellDef="let project">
+      {{ project.uploaded_time | date: 'MMM d, y' }}
+    </td>
+  </ng-container>
+  
+  
+        <!-- Action Column -->
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let project">
+            <button mat-icon-button color="primary" (click)="viewProject(project.project_link, project.project_id, 'student')">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Table Rows -->
+        <tr mat-header-row *matHeaderRowDef="['sno', 'link', 'status', 'uploaded_time', 'action']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['sno', 'link', 'status', 'uploaded_time', 'action'];"></tr>
+      </table>
+  
+      <mat-paginator #studentPaginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+    </mat-card>
+  </div>
+  

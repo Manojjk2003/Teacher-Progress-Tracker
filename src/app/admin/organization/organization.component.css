@@ -1,0 +1,200 @@
+/* Container Styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+/* Add School Button */
+.button.add-tsc-button, a.mat-raised-button.add-tsc-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.button.add-tsc-button:hover, a.mat-raised-button.add-tsc-button:hover {
+  background-color: #0056b3;
+}
+h2{
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+
+/* School Cards */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card, mat-card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: calc(33.333% - 20px); /* Three cards per row */
+  transition: transform 0.3s ease;
+}
+
+.card:hover, mat-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-body h3, mat-card-content h3 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.card-text, mat-card-content p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Action Buttons */
+.card .btn, mat-card .mat-button {
+  margin: 5px 5px 0 0;
+}
+
+mat-card-content .action-buttons button {
+  margin-right: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card, mat-card {
+    width: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 576px) {
+  .card, mat-card {
+    width: 100%;
+  }
+}
+
+/* Adjusting Card Width */
+.card, mat-card {
+  padding: 15px; /* Adjust card padding */
+}
+
+.card-body, mat-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Common Styling for Search and Add Button Row */
+.search-add-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Search Bar Styling */
+.search-container {
+  width: 40%; /* Adjust width as needed */
+}
+
+mat-form-field.search-bar {
+  width: 100%;
+}
+
+mat-form-field {
+  margin-bottom: 16px;
+  }
+
+/* Add Button Styling */
+.add-button {
+  margin-left: auto;
+}
+
+button.mat-raised-button.add-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+button.mat-raised-button.add-button:hover {
+  background-color: #0056b3;
+}
+
+/* TSC Form Styling */
+.tsc-form {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-title {
+  font-size: 15px; /* Adjust font size */
+  font-weight: bold; /* Make the title bold */
+  text-align: center; /* Center the title */
+  margin-bottom: 20px; /* Add space below the title */
+  color: #151414; /* Neutral color for the title */
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.gender-group {
+  margin-bottom: 15px;
+}
+
+.gender-label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+mat-radio-button {
+  margin-right: 15px;
+}
+
+.add-button1 {
+  width: 100%;
+  padding: 8px;
+  background-color: #ffd740;
+  color: black;
+}
+
+.cancel-button {
+  width: 60%;
+  padding: 8px;
+  background-color: #f44336; /* Red color */
+  color: white;
+}
+
+/* Button container to align buttons in a single line */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px; /* Add some space between the buttons */
+}
+
+.button-container button {
+  flex: 1; /* Ensures both buttons take equal width */
+}
+
+.mat-mdc-text-field-wrapper {
+  width: 100%;
+  z-index: 0;
+}

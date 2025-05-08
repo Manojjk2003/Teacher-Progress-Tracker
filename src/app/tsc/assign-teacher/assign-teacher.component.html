@@ -1,0 +1,36 @@
+<div class="breadcrumb">
+  <span>
+    <span [routerLink]="['/tsc-navbar/assign-organization']">
+      {{ capitalizeFirstLetter(organizationName) }}
+    </span> 
+    > 
+    <span [routerLink]="['/tsc-navbar/assign-school']">
+      {{ capitalizeFirstLetter(formatSchoolName(teachers[0]?.schoolName)) }}
+    </span>
+  </span>
+  
+</div>
+
+<h1>{{ capitalizeFirstLetter(formatSchoolName(teachers[0]?.schoolName)) }} Teachers</h1>
+
+<div class="teacher-container">
+  <mat-card *ngFor="let teacher of teachers" class="teacher-card" (click)="navigateToTeacherDashboard(teacher.id)">
+    <mat-card-header>
+      <mat-card-title>{{ capitalizeFirstLetter(teacher.name) }}</mat-card-title>
+      <!-- Display School Name instead of School ID -->
+      <!-- <mat-card-subtitle>School: {{ formatSchoolName(teacher.schoolName) }}</mat-card-subtitle> -->
+    </mat-card-header>
+    <mat-card-content>
+      <p><strong>School: </strong> {{ formatSchoolName(teacher.schoolName) }}</p>
+      <p><strong>Contact: </strong> {{ teacher.contactNo }}</p>
+      <p><strong>Email: </strong>{{ teacher.email }}</p>
+      <p><strong>Gender: </strong> {{ capitalizeFirstLetter(teacher.gender) }}</p>
+      <!-- <p>Click to view projects...</p> -->
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<!-- Optional: Add a message if no teachers are assigned -->
+<ng-container *ngIf="teachers.length === 0">
+  <p>No teachers assigned.</p>
+</ng-container>

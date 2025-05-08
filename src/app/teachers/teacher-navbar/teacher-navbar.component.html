@@ -1,0 +1,55 @@
+<div class="layout">
+  <!-- Sidebar -->
+  <!-- <button id="sidebar-toggle-btn" (click)="toggleSidebar()">☰</button> -->
+  <aside [class.hidden]="sidebarHidden" class="sidebar" id="sidebar">
+    <h3>Teacher</h3>
+    <nav>
+      <ul>
+        <li><a routerLink="teacher-dashboard" routerLinkActive="active"  (click)="collapseSidebar()">Dashboard</a></li>
+        <li><a routerLink="upload" routerLinkActive="active" (click)="collapseSidebar()">Upload</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main content -->
+  <div class="main">
+    <header class="header">
+      <button class="menu-toggle" (click)="toggleSidebar()">
+        <mat-icon>menu</mat-icon> <!-- Hamburger Icon -->
+      </button>
+
+<!-- Back button icon (disabled when on specific pages like admin-dashboard) -->
+<button *ngIf="showBackButton && !currentUrl.includes('teacher-dashboard')" (click)="goBack()" class="back-button">
+
+  <mat-icon>arrow_back</mat-icon>
+</button>
+  
+<button *ngIf="!showBackButton" class="back-button disabled" disabled>
+  <mat-icon>arrow_back</mat-icon> <!-- Masked Icon -->
+</button>
+
+<!-- School name displayed separately in the navbar -->
+<div class="school-name" style="margin-left: 15px;">
+  <span>🏫 <b>{{ schoolName || 'Loading School...' }} School </b></span>
+</div>
+
+
+      <div class="profile" (click)="toggleDropdown()">
+        <span class="profile-text">My Profile</span>
+        <i class="profile-icon">
+          <img src="assets/profile-user.png" alt="User Icon" class="user-icon" />
+        </i>
+        <div [class.active]="dropdownActive" class="dropdown" id="profileDropdown">
+          <a routerLink="/teacher-navbar/userdetails">Profile</a><br />
+          <a routerLink="/teacher-navbar/reset-password">Reset Password</a><br />
+          <a routerLink="/login">Logout</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content area -->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

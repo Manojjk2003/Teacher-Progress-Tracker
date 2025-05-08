@@ -1,0 +1,266 @@
+/* General Reset */
+
+/* Container for two-column layout */
+.container {
+    display: flex;
+    gap: 2rem; /* Space between the columns */
+    flex-wrap: wrap; /* Allows the columns to wrap for smaller screens */
+    padding: 2rem;
+  }
+  
+  /* Left Column */
+  .left-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Spacing between sections */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+  }
+  
+  /* Right Column */
+  .right-column {
+    flex: 0.5;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* Spacing between sections */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+  }
+  
+  /* Project Section */
+  /* Project Section */
+  .project-section {
+    background: linear-gradient(90deg, rgba(254,136,0,1) 0%, rgba(248,55,0,1) 100%, rgba(250,250,250,1) 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    flex: 1;
+    height: 500px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    overflow: hidden; /* Prevent overflow */
+  }
+  
+  .project-title {
+    width: 100%; /* Ensure iframe takes full width */
+    height: 100%; /* Ensure iframe takes full height */
+    border: none; /* Remove the iframe border */
+    object-fit: cover; /* Maintain aspect ratio while filling the space */
+  }
+  
+  
+  .submit-button2 {
+    background-color: rgb(8, 8, 84);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  /* Evaluation Metrics */
+  .evaluation-metrics {
+    background: linear-gradient(90deg, rgba(254,136,0,1) 0%, rgba(248,55,0,1) 100%, rgba(250,250,250,1) 100%);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-sizing: border-box;
+  }
+  
+  /* Section Title */
+  .section-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Metrics List */
+  .metrics-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 1rem;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  /* Individual Metric */
+  .metric {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .metric-box {
+    height: 1.75rem;
+    width: 3rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    font-weight: bold; /* Makes text bold */
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    text-align: center; /* Align text for multiline content */
+  }
+  
+  
+  /* Score Section */
+  .score-section {
+    background: linear-gradient(90deg, rgba(254,136,0,1) 0%, rgba(248,55,0,1) 100%, rgba(250,250,250,1) 100%);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .score-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .score-title {
+    font-size: 1.125rem;
+    font-weight: bold;
+  }
+  
+  .score-box {
+    flex-grow: 1;
+    height: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    display: flex; /* Enable flexbox */
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+    text-align: left; /* Align text for multiline content (optional) */
+    font-weight: bold
+  }
+  /* 
+  .score-box {
+    flex-grow: 2;
+    margin-left: 180px;
+    height: 2rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: left; 
+    font-weight: bold;
+    padding: 2px;
+  } */
+  
+  /* Feedback Section */
+  .feedback-section {
+    background: linear-gradient(90deg, rgba(254,136,0,1) 0%, rgba(248,55,0,1) 100%, rgba(250,250,250,1) 100%);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-sizing: border-box;
+  }
+  
+  .feedback-box {
+    width: 90%;
+    height: 12rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    resize: none;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+  }
+  
+  /* Submit Button */
+  .submit-button {
+    background-color:rgb(8, 8, 84);
+    color:white;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .submit-button:hover {
+    background-color:rgb(8, 8, 84);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .container {
+      flex-direction: column; /* Stack columns vertically */
+      gap: 1.5rem;
+    }
+  
+    .project-section, 
+    .evaluation-metrics,
+    .score-section,
+    .feedback-section {
+      padding: 1rem;
+    }
+  
+    .metric-box,
+    .score-box {
+      width: 4rem;
+    }
+  
+    .feedback-box {
+      height: 9rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .project-section, 
+    .evaluation-metrics,
+    .score-section,
+    .feedback-section {
+      padding: 1rem;
+    }
+  
+    .left-column,
+    .right-column {
+      flex: 1;
+      max-width: 100%;
+    }
+  
+    .project-section {
+      padding: 1rem;
+      height: auto;
+      width: 100%;
+    }
+  
+    .submit-button,
+    .submit-button2 {
+      width: 100%; /* Make the button fill the available width */
+      padding: 1rem;
+    }
+  
+    .feedback-box {
+      height: 7rem;
+    }
+  
+    .score-box {
+      width: 80%;
+    }
+  }
+  
+  /* Edit Button */
+  .edit-button {
+    margin-left: 0.25rem;
+    background-color:rgb(8, 8, 84);
+    color: white;
+    border: none;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+  }
+  
+  .edit-button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,0 +1,325 @@
+/* General layout */
+.layout {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+nav ul li a {
+  text-decoration: none;
+  background-color: #ff6f00;
+  padding: 10px 15px;
+  display: block;
+  transition: 0.3s;
+  border-radius: 5px;
+}
+
+/* Default button-like styling */
+nav ul li a {
+  background-color: #f1f1f1; /* Light gray background */
+  border: 1px solid #ccc;
+}
+
+/* When the link is active, change the button color */
+nav ul li a.active-button {
+  background-color: #007bff; /* Blue color when active */
+  color: white;
+  font-weight: bold;
+  border: 1px solid #0056b3; /* Darker blue border */
+}
+
+
+
+/* Sidebar styles */
+.sidebar {
+  width: 250px;
+  background: rgb(254,136,0);
+  background: linear-gradient(90deg, rgba(254,136,0,1) 0%, rgba(248,55,0,1) 100%, rgba(250,250,250,1) 100%);
+  color: #333;
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  overflow-y: auto;
+  z-index: 10;
+  transition: transform 0.3s ease; /* Smooth transition for sliding */
+}
+
+.sidebar h3 {
+  margin: 0 0 20px;
+  font-size: 20px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 15px;
+}
+
+.sidebar nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+  display: block;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar nav ul li a:hover {
+  background-color: #ffe5e5;
+}
+
+
+/* Sidebar Toggle Button */
+#sidebar-toggle-btn {
+  display: none; /* Hide the button by default */
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgb(254,136,0);
+
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
+}
+
+#sidebar-toggle-btn:hover {
+  background: rgb(254,136,0);
+}
+
+
+/* Main content styles */
+.main {
+  margin-left: 250px;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 250px);
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;  /* Updated to space out the back button and profile */
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.header .profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.header .dropdown {
+  display: none;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 100;
+  width: 150px;
+}
+
+.header .dropdown.active {
+  display: block;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #f9f9f9;
+}
+
+/* Profile dropdown active class */
+.header .dropdown.active {
+  display: block;
+}
+
+.back-button.disabled {
+  opacity: 0.5; /* Mask the button */
+  pointer-events: none; /* Disable click events */
+}
+
+/* Optional: You can also use other styles to make it visually appear masked */
+.back-button.disabled mat-icon {
+  color: rgba(0, 0, 0, 0.38); /* Change color to indicate it's disabled */
+}
+
+/* Back Button Styles */
+.back-button {
+  position: relative;
+  padding: 10px;
+  background-color: #ff8c00; /* Background color */
+  border-radius: 50%; /* Circular shape for the button */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Glowing effect when the button is enabled */
+.back-button:not(.disabled):hover {
+  box-shadow: 0 0 15px 5px rgba(255, 140, 0, 0.8); /* Glowing effect */
+  background-color: #ff6f00; /* Slightly darker on hover */
+}
+
+/* Back Icon */
+.back-button mat-icon {
+  color: white;
+  font-size: 24px;
+  transition: color 0.3s ease; /* Smooth transition for color */
+}
+
+.back-button.disabled {
+  opacity: 0.5; /* Mask the button */
+  visibility: hidden; /* Hides the button completely */
+  pointer-events: none; /* Disable click events */
+}
+
+/* Optional: Change color of the icon when the button is disabled */
+.back-button.disabled mat-icon {
+  color: rgba(0, 0, 0, 0.38); /* Change color to indicate it's disabled */
+}
+
+/* Profile styles */
+.profile {
+  display: flex;
+  align-items: left;
+  background: linear-gradient(
+    90deg,
+    rgba(254, 136, 0, 1) 0%,
+    rgba(248, 55, 0, 1) 100%
+  );
+  gap: 8px; /* Spacing between icon and text */
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 40px;
+  width: auto;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-left: auto; /* Push it to the right */
+  position: relative;
+  right: 0;
+}
+
+.profile:hover {
+  background-color: #ff8c00; /* Slightly darker orange on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Profile Icon */
+.profile-icon img.user-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%; /* Circular shape */
+  border: 2px solid #fff; /* Optional white border */
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.profile-icon img.user-icon:hover {
+  transform: scale(1.1); /* Zoom in slightly on hover */
+}
+
+/* Profile Text */
+.profile span {
+  font-size: 14px;
+  color: #fff; /* White text color */
+  font-weight: bold;
+}
+
+/* Dropdown menu */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 100;
+  width: 100px;
+  text-align: left;
+  padding: 5px;
+}
+
+/* Dropdown active state */
+.dropdown.active {
+  display: block;
+}
+
+/* Dropdown links */
+.dropdown a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: #333;
+  font-size: 10px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.3s ease;
+}
+
+/* Last link in dropdown */
+.dropdown a:last-child {
+  border-bottom: none;
+}
+
+/* Hover effect for dropdown links */
+.dropdown a:hover {
+  background-color: #ffe5e5;
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    transform: translateX(-100%); /* Hide sidebar by default on mobile */
+    position: fixed;
+    transition: transform 0.3s ease; /* Smooth transition for sliding */
+  }
+
+  .sidebar:not(.hidden) {
+    transform: translateX(0); /* Show sidebar when not hidden */
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .menu-toggle {
+    display: block; /* Show hamburger menu on small screens */
+  }
+}

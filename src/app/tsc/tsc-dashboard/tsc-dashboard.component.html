@@ -1,0 +1,67 @@
+<div class="dashboard-container">
+  <!-- Statistics Summary -->
+  <div>
+    <h2>Welcome, {{  capitalizeFirstLetter(teacher_name) }}</h2>
+  </div>
+  <div class="stats-container">
+    <mat-card class="stat-card">
+      <mat-card-title>No. of Teachers</mat-card-title>
+      <mat-card-content>{{ stats.numberOfTeachers }}</mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card">
+      <mat-card-title>No. of Students</mat-card-title>
+      <mat-card-content>{{ stats.numberOfStudents }}</mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card">
+      <mat-card-title>Evaluated Projects</mat-card-title>
+      <mat-card-content>{{ stats.evaluatedProjects }}</mat-card-content>
+    </mat-card>
+    <mat-card class="stat-card">
+      <mat-card-title>Pending Projects</mat-card-title>
+      <mat-card-content>{{ stats.pendingProjects }}</mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Teachers Table -->
+  <div class="teachers-table-container">
+    <mat-card class="table-card">
+      <mat-card-title>Teachers List</mat-card-title>
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+          <td mat-cell *matCellDef="let teacher">{{  capitalizeFirstLetter(teacher.teacher_name) }}</td>
+        </ng-container>
+
+        <!-- Contact Number Column -->
+        <ng-container matColumnDef="contactNo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Contact Number</th>
+          <td mat-cell *matCellDef="let teacher">{{ teacher.contact_number }}</td>
+        </ng-container>
+
+        <!-- Email ID Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Email ID</th>
+          <td mat-cell *matCellDef="let teacher">{{ teacher.email_id }}</td>
+        </ng-container>
+
+        <!-- Last Updated Column -->
+        <ng-container matColumnDef="lastUpdated">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Recent Activity</th>
+          <td mat-cell *matCellDef="let teacher">{{ teacher.last_updated }}</td>
+        </ng-container>
+
+        <!-- Header and Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <!-- Paginator -->
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Teacher list pagination"
+      ></mat-paginator>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,86 @@
+<div class="profile-container">
+  <h2>Profile</h2>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading">Loading profile data...</div>
+
+  <!-- Profile Card -->
+  <div class="profile-card" *ngIf="!isLoading && userProfile; else loading">
+    <!-- Left Section -->
+    <div class="profile-left">
+      <div class="profile-image">
+        <img 
+          [src]="userProfile.gender === 'male' ? 
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFkwjt8tehMC96J7e7mGcsbUGhA0kY3NQjNA&s' : 
+            'https://cdn-icons-png.flaticon.com/512/6833/6833591.png'" 
+          alt="Profile Picture">
+      </div>
+      <p>{{ capitalizeName(userProfile.name) }}</p>
+    </div>
+
+    <!-- Right Section -->
+    <div class="profile-right">
+      <!-- Edit Mode Form -->
+      <form *ngIf="isEditMode; else viewMode">
+        <label for="email">Email:</label>
+        <input id="email" [value]="userProfile.email" disabled>
+
+        <label for="fullName">Full Name:</label>
+        <input id="fullName" [(ngModel)]="userProfile.name" name="fullName" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" [(ngModel)]="userProfile.gender" name="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="contactNumber">Contact Number:</label>
+        <input 
+          id="contactNumber" 
+          [(ngModel)]="userProfile.ph_no" 
+          name="contactNumber" 
+          required 
+          pattern="^\d{10}$" 
+          maxlength="10" 
+          #contactNumber="ngModel"
+        />
+        
+        <!-- Error Messages -->
+        <div *ngIf="contactNumber?.errors">
+          <span *ngIf="contactNumber?.errors?.['required']" style="color: red;">
+            Contact number is required.
+          </span>
+          <span *ngIf="contactNumber?.errors?.['pattern']" style="color: red;">
+            Contact number must be exactly 10 digits.
+          </span>
+        </div>
+
+
+        <div class="profile-buttons">
+          <button type="button" class="btn btn-save" (click)="saveProfile()">Save</button>
+          <button type="button" class="btn btn-edit" (click)="cancelEdit()">Cancel</button>
+        </div>
+      </form>
+
+      <!-- View Mode -->
+      <ng-template #viewMode>
+        <div class="profile-details">
+          <p><strong>Email:</strong> {{ userProfile.email }}</p>
+          <p><strong>Full Name:</strong> {{ capitalizeName(userProfile.name) }}</p>
+          <p><strong>Gender:</strong> {{ userProfile.gender }}</p>
+          <p><strong>Contact Number:</strong> {{ userProfile.ph_no }}</p>
+          <!-- <p><strong>Address:</strong> {{ userProfile.address }}</p> -->
+        </div>
+        <div class="profile-buttons">
+          <button type="button" class="btn btn-edit" (click)="editProfile()">Edit</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+
+  <!-- Loading Template -->
+  <ng-template #loading>
+    <p>Loading profile data...</p>
+  </ng-template>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="breadcrumb">
+    <span>
+      <span *ngIf="organizationName" [routerLink]="['/admin-navbar/all-organization']">{{ capitalizeFirstLetter(organizationName) }}</span> > 
+      <span *ngIf="schoolName" [routerLink]="['/admin-navbar/evalution']">{{ capitalizeFirstLetter(schoolName) }}</span>
+    </span>
+    
+  </div>
+  
+    <h2>Teachers List</h2>
+  
+    <!-- Show this message if there are no teachers -->
+    <p *ngIf="!teachers.length">No teachers found for the selected school.</p>
+  
+    <!-- Teacher Cards Container -->
+    <div class="teacher-container">
+      <!-- List of teachers -->
+      <mat-card
+        *ngFor="let teacher of teachers"
+        class="teacher-card"
+        (click)="navigateToTeacherDashboard(teacher.teacher_id)"
+        style="cursor: pointer;"
+      >
+        <mat-card-header>
+          <!-- Teacher Name -->
+          <mat-card-title>{{ capitalizeFirstLetter(teacher.teacher_name) }}</mat-card-title>
+        </mat-card-header>
+  
+        <mat-card-content>
+          <!-- Teacher Details -->
+          <p><strong>Email:</strong> {{ teacher.email }}</p>
+          <p><strong>Contact:</strong> {{ teacher.contact_no }}</p>
+          <p><strong>No. of Students:</strong> {{ teacher.number_of_students }}</p>
+          <!-- Uncomment these if needed -->
+          <p><strong>School Address:</strong> {{ teacher.school_name }}</p>
+          <!-- <p><strong>School Contact:</strong> {{ teacher.school_contact_no }}</p> -->
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
